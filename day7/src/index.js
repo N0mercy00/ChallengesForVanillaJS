@@ -11,19 +11,33 @@ const DONEDOS_LS='doneDos'
 let toDos=[];
 const doneDos=[];
 
-function movToDos(text) {
+/*
+function delDoneDos(event){
+    const btn = event.target;
+    const li = btn.parentNode;
+    doneDoList.removeChild(li);
+    const cleanDoneDos=doneDos.filter(function(doneDo){
+        return doneDo.id!==parseInt(li.id);
+    })
+    doneDos=cleanDoneDos;
+    saveDoneDos();
+}
+*/
+
+function loadDDD(text){
     const li = document.createElement("li");
     const delBtn = document.createElement("button");
-    delBtn.innerText = "❌";
     const backBtn = document.createElement("button");
+    delBtn.innerText = "❌";
+    //
+    //delBtn.addEventListener("click",delDoneDos);
+    //
     backBtn.innerText = "✅";
     const span = document.createElement("span");
     const newId = doneDos.length + 1;
+    
 
-    console.log(newId);
-    console.log(toDos[newId - 1].text);
-    console.log(doneDos[newId-1]);
-        span.innerText = toDos[newId - 1].text;
+        span.innerText =text;
         li.appendChild(span);
         li.appendChild(delBtn);
         li.appendChild(backBtn);
@@ -34,7 +48,41 @@ function movToDos(text) {
             text: text,
             id: newId
         };
+       
+}
+
+function movToDos(text) {
+    const li = document.createElement("li");
+    const delBtn = document.createElement("button");
+    const backBtn = document.createElement("button");
+    delBtn.innerText = "❌";
+    //
+    //delBtn.addEventListener("click",delDoneDos);
+    //
+    backBtn.innerText = "✅";
+    const span = document.createElement("span");
+    const newId = doneDos.length + 1;
+    const btn = event.target;
+    const nli = btn.parentNode;
+    /*console.log(btn);
+    console.log(nli);
+    console.log(nli.id);
+    */
+
+
+        span.innerText = toDos[nli.id-1].text;
+        li.appendChild(span);
+        li.appendChild(delBtn);
+        li.appendChild(backBtn);
+        li.id = newId;
+        doneDoList.appendChild(li);
+    
+        const doneDoObj = {
+            text: toDos[nli.id-1].text,
+            id: newId
+        };
         doneDos.push(doneDoObj);
+        console.log(doneDos);
        saveDoneDos();
 }
 
@@ -106,7 +154,7 @@ function loaddoneDos(){
     if(loadeddoneDos!==null){
         const parsedDoneDos=JSON.parse(loadeddoneDos);
         parsedDoneDos.forEach(function(doneDo){
-            movToDos(doneDo.text);
+            loadDDD(doneDo.text);
         })
     }
 }
