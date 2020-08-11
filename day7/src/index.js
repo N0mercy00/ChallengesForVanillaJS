@@ -9,9 +9,25 @@ const doneDoList =document.querySelector(".js-doneDoList");
 const TODOS_LS = 'toDos';
 const DONEDOS_LS='doneDos'
 let toDos=[];
-const doneDos=[];
+let doneDos=[];
 
+
+///
 /*
+function Last(text) {
+    const btn = event.target;
+    const nli = btn.parentNode;
+ const content = toDos[nli.id-1].text;
+  paintToDo(content);
+  delDoneDos();
+  saveToDos();
+  saveDoneDos();
+  console.log("gotit");
+}
+
+
+*/
+////
 function delDoneDos(event){
     const btn = event.target;
     const li = btn.parentNode;
@@ -22,17 +38,16 @@ function delDoneDos(event){
     doneDos=cleanDoneDos;
     saveDoneDos();
 }
-*/
 
+///////////////////////////////////////////////////////////////
 function loadDDD(text){
     const li = document.createElement("li");
     const delBtn = document.createElement("button");
     const backBtn = document.createElement("button");
     delBtn.innerText = "❌";
-    //
-    //delBtn.addEventListener("click",delDoneDos);
-    //
+    delBtn.addEventListener("click",delDoneDos);
     backBtn.innerText = "✅";
+   
     const span = document.createElement("span");
     const newId = doneDos.length + 1;
     
@@ -47,29 +62,28 @@ function loadDDD(text){
         const doneDoObj = {
             text: text,
             id: newId
-        };
-       
+        };     
 }
+////////////////////////////////////////////////////////////////////////////////////
 
 function movToDos(text) {
     const li = document.createElement("li");
     const delBtn = document.createElement("button");
     const backBtn = document.createElement("button");
     delBtn.innerText = "❌";
-    //
-    //delBtn.addEventListener("click",delDoneDos);
-    //
+    delBtn.addEventListener("click",delDoneDos);
     backBtn.innerText = "✅";
+    //backBtn.addEventListener("click",Last);
     const span = document.createElement("span");
     const newId = doneDos.length + 1;
     const btn = event.target;
     const nli = btn.parentNode;
-    /*console.log(btn);
+    console.log(btn);
     console.log(nli);
     console.log(nli.id);
-    */
-
-
+    console.log(toDos[nli.id-1].text);
+    
+ 
         span.innerText = toDos[nli.id-1].text;
         li.appendChild(span);
         li.appendChild(delBtn);
@@ -114,7 +128,8 @@ function paintToDo(text){
     delBtn.innerText="❌";
     delBtn.addEventListener("click",delToDos);
     movBtn.innerText="✅";
-    movBtn.addEventListener("click",movToDos);
+    movBtn.addEventListener("click",movToDos,delToDos);
+    movBtn.addEventListener("click",delToDos);
     const span =document.createElement("span");
     const newId=toDos.length+1;
     span.innerText=text;
