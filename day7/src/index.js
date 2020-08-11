@@ -12,21 +12,40 @@ let toDos=[];
 let doneDos=[];
 
 
-///
-/*
+
 function Last(text) {
+    const li = document.createElement("li");
+    const delBtn = document.createElement("button");
+    const backBtn = document.createElement("button");
+    delBtn.innerText = "❌";
+    delBtn.addEventListener("click",delToDos);
+    backBtn.innerText = "✅";
+    backBtn.addEventListener("click",movToDos,delToDos);
+    backBtn.addEventListener("click",delToDos);
+    const span = document.createElement("span");
+    const newId = toDos.length + 1;
+    
     const btn = event.target;
     const nli = btn.parentNode;
- const content = toDos[nli.id-1].text;
-  paintToDo(content);
-  delDoneDos();
-  saveToDos();
-  saveDoneDos();
-  console.log("gotit");
+  span.innerText = doneDos[nli.id-1].text;
+        li.appendChild(span);
+        li.appendChild(delBtn);
+        li.appendChild(backBtn);
+        li.id = newId;
+        toDoList.appendChild(li);
+    
+        const toDoObj = {
+            text: doneDos[nli.id-1].text,
+            id: newId
+        };
+        toDos.push(toDoObj);
+        //console.log(doneDos);
+
+       saveToDos();
 }
 
 
-*/
+
 ////
 function delDoneDos(event){
     const btn = event.target;
@@ -73,17 +92,18 @@ function movToDos(text) {
     delBtn.innerText = "❌";
     delBtn.addEventListener("click",delDoneDos);
     backBtn.innerText = "✅";
-    //backBtn.addEventListener("click",Last);
+    backBtn.addEventListener("click",Last,delDoneDos);
+    backBtn.addEventListener("click",delDoneDos);
     const span = document.createElement("span");
     const newId = doneDos.length + 1;
     
     const btn = event.target;
     const nli = btn.parentNode;
-  
+  /*
     console.log("toDos text:",toDos);
     console.log("ID:",nli.id);
     console.log("content:",toDos[nli.id-1].text);
-    
+    */
 
 
         span.innerText = toDos[nli.id-1].text;
@@ -98,7 +118,7 @@ function movToDos(text) {
             id: newId
         };
         doneDos.push(doneDoObj);
-        console.log(doneDos);
+        //console.log(doneDos);
        saveDoneDos();
 }
 
