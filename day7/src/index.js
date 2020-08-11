@@ -11,6 +11,52 @@ const DONEDOS_LS='doneDos'
 let toDos=[];
 const doneDos=[];
 
+function movToDos(text) {
+    const li = document.createElement("li");
+    const delBtn = document.createElement("button");
+    delBtn.innerText = "❌";
+    const backBtn = document.createElement("button");
+    backBtn.innerText = "✅";
+    const span = document.createElement("span");
+    const newId = doneDos.length + 1;
+
+    console.log(newId);
+    console.log(toDos[newId - 1].text);
+    span.innerText = toDos[newId - 1].text;
+    li.appendChild(span);
+    li.appendChild(delBtn);
+    li.appendChild(backBtn);
+    li.id = newId;
+    doneDoList.appendChild(li);
+
+    const doneDoObj = {
+        text: text,
+        id: newId
+    };
+    doneDos.push(doneDoObj);
+    saveDoneDos();
+        
+    
+    /*
+    span.innerText=text;
+    li.appendChild(span);
+    li.appendChild(delBtn);
+    li.appendChild(backBtn);
+    li.id=newId;
+    doneDoList.appendChild(li);
+   
+    console.log(doneDos);
+    const doneDoObj={
+        text:text,
+        id:newId
+    };
+    doneDos.push(doneDoObj);
+    saveDoneDos();
+    */
+}
+
+
+
 function delToDos(event){
     const btn = event.target;
     const li = btn.parentNode;
@@ -25,7 +71,7 @@ function delToDos(event){
 function saveToDos(){
     localStorage.setItem(TODOS_LS,JSON.stringify(toDos));
 }
-function saveDoneToDos(){
+function saveDoneDos(){
     localStorage.setItem(DONEDOS_LS,JSON.stringify(doneDos));
 }
 
@@ -37,6 +83,7 @@ function paintToDo(text){
     delBtn.innerText="❌";
     delBtn.addEventListener("click",delToDos);
     movBtn.innerText="✅";
+    movBtn.addEventListener("click",movToDos);
     const span =document.createElement("span");
     const newId=toDos.length+1;
     span.innerText=text;
@@ -71,8 +118,19 @@ function loadToDos(){
     }
 }
 
+function loaddoneDos(){
+    const loadeddoneDos=localStorage.getItem(DONEDOS_LS);
+    if(loadeddoneDos!==null){
+        const parsedDoneDos=JSON.parse(loadeddoneDos);
+        parsedDoneDos.forEach(function(doneDo){
+            movToDos(doneDo.text);
+        })
+    }
+}
+
 function init(){
     loadToDos();
+    loaddoneDos();
     toDoForm.addEventListener("submit",handleSubmit);
 }
 
