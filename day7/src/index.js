@@ -76,14 +76,16 @@ function movToDos(text) {
     //backBtn.addEventListener("click",Last);
     const span = document.createElement("span");
     const newId = doneDos.length + 1;
+    
     const btn = event.target;
     const nli = btn.parentNode;
-    console.log(btn);
-    console.log(nli);
-    console.log(nli.id);
-    console.log(toDos[nli.id-1].text);
+  
+    console.log("toDos text:",toDos);
+    console.log("ID:",nli.id);
+    console.log("content:",toDos[nli.id-1].text);
     
- 
+
+
         span.innerText = toDos[nli.id-1].text;
         li.appendChild(span);
         li.appendChild(delBtn);
