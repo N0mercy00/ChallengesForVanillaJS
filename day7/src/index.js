@@ -22,37 +22,20 @@ function movToDos(text) {
 
     console.log(newId);
     console.log(toDos[newId - 1].text);
-    span.innerText = toDos[newId - 1].text;
-    li.appendChild(span);
-    li.appendChild(delBtn);
-    li.appendChild(backBtn);
-    li.id = newId;
-    doneDoList.appendChild(li);
-
-    const doneDoObj = {
-        text: text,
-        id: newId
-    };
-    doneDos.push(doneDoObj);
-    saveDoneDos();
-        
+    console.log(doneDos[newId-1]);
+        span.innerText = toDos[newId - 1].text;
+        li.appendChild(span);
+        li.appendChild(delBtn);
+        li.appendChild(backBtn);
+        li.id = newId;
+        doneDoList.appendChild(li);
     
-    /*
-    span.innerText=text;
-    li.appendChild(span);
-    li.appendChild(delBtn);
-    li.appendChild(backBtn);
-    li.id=newId;
-    doneDoList.appendChild(li);
-   
-    console.log(doneDos);
-    const doneDoObj={
-        text:text,
-        id:newId
-    };
-    doneDos.push(doneDoObj);
-    saveDoneDos();
-    */
+        const doneDoObj = {
+            text: text,
+            id: newId
+        };
+        doneDos.push(doneDoObj);
+       saveDoneDos();
 }
 
 
