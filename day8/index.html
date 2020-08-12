@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Parcel Sandbox</title>
-    <meta charset="UTF-8" />
-  </head>
+    <head>
+        <title>Parcel Sandbox</title>
+        <meta charset="UTF-8"/>
+    </head>
 
-  <body>
-      <h1>Random Number Game</h1>
-      <div calss="range">
-          <span id="info">
-              aaaa
-          </span>
-          <input type="range" id="jsRange" min="0"max="200" value="100" step="1">
-      </div>
-      <h4>bbbb</h4>
-    <script src="src/index.js"></script>
-  </body>
+    <body>
+        <h1>Random Number Game</h1>
+        <div calss="range">
+            <span id="info">
+                aaaa
+            </span>
+            <input type="range" id="jsRange" min="0" max="200" value="100" step="1">
+        </div>
+        <div>
+            <h4>Guess the number</h4>
+            <input id="jsPlayer" type="number"/>
+            <button>play!</button>
+            <div id="playground"></div>
+            <div id="result"></div>
+        </div>
+        <script src="src/index.js"></script>
+    </body>
 </html>
